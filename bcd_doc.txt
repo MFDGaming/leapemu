@@ -1,0 +1,136 @@
+BUILD_CONFIG_REGISTERS:
+VBFDW_BUILD (0x64): 0x00000000
+- DISABLED_NOBODY_CARES
+
+EXT_ARITH_BUILD (0x65): 0x00000001
+bits [7:0] -> VERSION: 0 => MISSING
+                       1 => ARCtangent-A4? + ARCtangent-A5
+
+DATASPACE (0x66): 0x00000000
+- DISABLED_NOBODY_CARES
+
+MEMSUBSYS (0x67): 0x00000001
+bits [0:0] -> EXT_MEM_ENABLED
+bits [2:2] -> IS_BIG_ENDIAN
+
+VECBASE_AC_BUILD (0x68): 0x00000001
+bits [1:0] -> INTERRUPT_COUNT: 0 => 16
+                               1 => 32
+bits [9:2] -> VERSION: 0 => ARCtangent-A4? + ARCtangent-A5
+bits [31:10] -> ADDR
+
+P_BASE_ADDR (0x69): 0x00fc0001
+bits [7:0] -> VERSION: 0 => MISSING
+                       1 => ARCtangent-A4? + ARCtangent-A5
+bits [31:8] -> ADDR
+Notes: The value of ADDR must be left shifted by 1
+       to get the correct address
+
+D_CACHE_BUILD (0x72): 0x00006201
+bits [7:0] -> VERSION: 0 => MISSING
+                       1 => ARCtangent-A4? + ARCtangent-A5
+bits [11:8] -> CACHE_TYPE: 0 => NONE
+                           1 => ONE_WAY_SET_ASSOCIATIVE_CACHE
+                           2 => TWO_WAY_SET_ASSOCIATIVE_CACHE
+                           3 => FOUR_WAY_SET_ASSOCIATIVE_CACHE
+bits [15:12] -> CACHE_SIZE: 0 => 512 bytes
+                            1 => 1024 bytes
+                            2 => 2048 bytes
+                            3 => 4096 bytes
+                            4 => 8192 bytes
+                            5 => 16384 bytes
+                            6 => 32768 bytes
+bits [19:16] -> CACHE_LINE_LENGTH: 0 => 4 words
+                                   1 => 8 words
+                                   2 => 16 words
+                                   3 => 32 words
+                                   4 => 64 words
+
+MADI_BUILD (0x73): 0x00000000
+DISABLED_NOBODY_CARES
+
+LDSTRAM_BUILD (0x74): 0x00000000
+DISABLED_NOBODY_CARES
+
+TIMER_BUILD (0x75): 0x00000302
+bits [7:0] -> VERSION: 0 => MISSING
+                       1 => ARCtangent-A4?
+                       2 => ARCtangent-A5
+bits [8:8] -> TIMER0_ENABLED
+bits [9:9] -> TIMER1_ENABLED
+
+AP_BUILD (0x76): 0x00000000
+DISABLED_NOBODY_CARES
+
+I_CACHE_BUILD (0x77): 0x00016401
+bits [7:0] -> VERSION: 0 => MISSING
+                       1 => ARCtangent-A4? + ARCtangent-A5
+bits [11:8] -> CACHE_TYPE: 0 => NONE
+                           1 => DIRECT_MAPPED_STD_CACHE
+                           2 => DIRECT_MAPPED_STD_CACHE_AND_CODE_RAM
+                           3 => TWO_WAY_SET_ASSOCIATIVE_CACHE
+                           4 => FOUR_WAY_SET_ASSOCIATIVE_CACHE
+bits [15:12] -> CACHE_SIZE: 0 => 512 bytes (ARChitect seems to not seem to allow 512 icache so this field might be reserved)
+                            1 => 1024 bytes
+                            2 => 2048 bytes
+                            3 => 4096 bytes
+                            4 => 8192 bytes
+                            5 => 16384 bytes
+                            6 => 32768 bytes
+bits [19:16] -> CACHE_LINE_LENGTH: 0 => 2 words
+                                   1 => 4 words
+                                   2 => 8 words
+                                   3 => 16 words
+                                   4 => 32 words
+                                   5 => 64 words
+
+ADDSUB_BUILD (0x78): 0x00000000
+DISABLED_NOBODY_CARES
+
+DSPRAM_BUILD (0x79): 0x00001203
+bits [7:0] -> VERSION: 0 => MISSING
+                       1 => ARC 3.0???
+                       2 => ARCtangent-A4?
+                       3 => ARCtangent-A5
+bits [11:8] -> XY_MEMORY_SIZE: 0 => 512 bytes
+                               1 => 1024 bytes
+                               2 => 2048 bytes
+                               3 => 4096 bytes
+                               4 => 8192 bytes
+                               5 => 16384 bytes
+bits [15:12] -> XY_BANKS: 0 => 0 banks
+                          1 => 1 bank
+                          2 => 2 banks
+                          3 => 3 banks
+                          4 => 4 banks
+
+MAC_BUILD (0x7a): 0x00000203
+bits [7:0] -> VERSION: 0 => MISSING
+                       1 => MUL/MAC
+                       2 => MAC
+                       3 => MAC V3
+bits [15:8] -> MAC_TYPE: 0 => 16x16
+                         1 => 24x24
+                         2 => dual 16x16
+
+MULTIPLY_BUILD (0x7b): 0x00000001
+bits [7:0] -> VERSION: 0 => MISSING
+                       1 => Multiply 32x32 with special result registers
+                       2 => Multiply 32x32 with any result register
+
+SWAP_BUILD (0x7c): 0x00000001
+bits [7:0] -> VERSION: 0 => MISSING
+                       1 => ARCtangent-A4? + ARCtangent-A5
+
+NORM_BUILD (0x7d): 0x00000002
+bits [7:0] -> VERSION: 0 => MISSING
+                       1 => ARCtangent-A4?
+                       2 => ARCtangent-A5
+
+MINMAX_BUILD (0x7e): 0x00000000
+DISABLED_NOBODY_CARES
+
+BARREL_BUILD (0x7f): 0x00000002
+bits [7:0] -> VERSION: 0 => MISSING
+                       1 => ARCtangent-A4?
+                       2 => ARCtangent-A5
