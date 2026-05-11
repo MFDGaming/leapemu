@@ -29,10 +29,12 @@ Notes: The value of ADDR must be left shifted by 1
 D_CACHE_BUILD (0x72): 0x00006201
 bits [7:0] -> VERSION: 0 => MISSING
                        1 => ARCtangent-A4? + ARCtangent-A5
-bits [11:8] -> CACHE_TYPE: 0 => NONE
-                           1 => ONE_WAY_SET_ASSOCIATIVE_CACHE
-                           2 => TWO_WAY_SET_ASSOCIATIVE_CACHE
-                           3 => FOUR_WAY_SET_ASSOCIATIVE_CACHE
+bits [11:8] -> CACHE_TYPE: 0 => ONE_WAY_SET_ASSOCIATIVE_CACHE_2_STAGE
+                           1 => TWO_WAY_SET_ASSOCIATIVE_CACHE_2_STAGE
+                           2 => FOUR_WAY_SET_ASSOCIATIVE_CACHE_2_STAGE
+                           3 => ONE_WAY_SET_ASSOCIATIVE_CACHE_3_STAGE
+                           4 => TWO_WAY_SET_ASSOCIATIVE_CACHE_3_STAGE
+                           5 => FOUR_WAY_SET_ASSOCIATIVE_CACHE_3_STAGE
 bits [15:12] -> CACHE_SIZE: 0 => 512 bytes
                             1 => 1024 bytes
                             2 => 2048 bytes
@@ -65,12 +67,12 @@ DISABLED_NOBODY_CARES
 I_CACHE_BUILD (0x77): 0x00016401
 bits [7:0] -> VERSION: 0 => MISSING
                        1 => ARCtangent-A4? + ARCtangent-A5
-bits [11:8] -> CACHE_TYPE: 0 => NONE
-                           1 => DIRECT_MAPPED_STD_CACHE
-                           2 => DIRECT_MAPPED_STD_CACHE_AND_CODE_RAM
+bits [11:8] -> CACHE_TYPE: 0 => DIRECT_MAPPED_STD_CACHE
+                           1 => DIRECT_MAPPED_STD_CACHE_AND_CODE_RAM
+                           2 => RESERVED
                            3 => TWO_WAY_SET_ASSOCIATIVE_CACHE
                            4 => FOUR_WAY_SET_ASSOCIATIVE_CACHE
-bits [15:12] -> CACHE_SIZE: 0 => 512 bytes (ARChitect seems to not seem to allow 512 icache so this field might be reserved)
+bits [15:12] -> CACHE_SIZE: 0 => 512 bytes
                             1 => 1024 bytes
                             2 => 2048 bytes
                             3 => 4096 bytes
