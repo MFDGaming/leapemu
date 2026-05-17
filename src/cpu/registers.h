@@ -24,7 +24,8 @@ enum ARC_CORE_REGS {
     ARC_REG_R52, ARC_REG_R53, ARC_REG_R54, ARC_REG_R55,
     ARC_REG_R56, ARC_REG_R57, ARC_REG_R58, ARC_REG_R59,
     /* Other Registers */
-    ARC_REG_LP_COUNT, ARC_REG_RESERVED, ARC_REG_LONG_IMM, ARC_REG_PCL
+    ARC_REG_LP_COUNT, ARC_REG_RESERVED, ARC_REG_LONG_IMM, ARC_REG_PCL,
+    _ARC_REG_MAX
 };
 
 /* Multiply Core Registers */
@@ -160,10 +161,11 @@ enum ARC_AUX_REGS {
     ARC_REG_CONTROL1, /* Timer 1 Control */
     ARC_REG_LIMIT1, /* Timer 1 Limit */
     ARC_REG_AUX_IRQ_LEV = 0x200, /* Level 1,2 Programming */
-    ARC_REG_AUX_IRQ_HINT /* Software Interrupt Trigger Location */
+    ARC_REG_AUX_IRQ_HINT, /* Software Interrupt Trigger Location */
+    _ARC_AUX_REG_MAX
 };
 
 /* Note: Aux register data wraps around every 65536 registers. */
-#define ARC_AUX_REG(x) (((x % 65536) >= 516) ? ARC_REG_IDENTITY : (x % 65536))
+#define ARC_AUX_REG(x) (((x % 65536) >= _ARC_AUX_REG_MAX) ? ARC_REG_IDENTITY : (x % 65536))
 
 #endif
