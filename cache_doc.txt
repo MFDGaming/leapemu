@@ -1,0 +1,74 @@
+CACHE_EXT_REGISTERS:
+IC_IVIC (0x10): 0x00000000 (W)
+bits [31:0] -> INVALIDATE
+Notes: When written to, the entire instruction cache is invalidated
+
+IC_CTRL (0x11): 0x00000002 (RW)
+bits [0:0] -> DISABLE_CACHE: 0 => ENABLE
+                             1 => DISABLE
+bits [1:1] -> UNKNOWN
+bits [2:2] -> UNKNOWN
+bits [3:3] -> SUCCESS_BIT: 0 => FAIL
+                           1 => SUCCESS
+bits [4:4] -> UNKNOWN
+bits [5:5] -> ADDR_DEBUG_TYPE: 0 => DIRECT_CACHE_RAM_ACCESS
+                               1 => CACHE_CONTROLLED_RAM_ACCESS
+Notes: The leapster seems to use bit-1 and bit-4, but their functionality is still unknown
+
+IC_LIL (0x13): 0x00000000 (W)
+bits [31:0] -> ADDR
+Notes: When written, the data line in the given address is re-fetched from memory and
+       then the line gets locked and IC_CTRL->SUCCESS_BIT is set to 1. If all ways are
+       already locked with different addresses the IC_CTRL->SUCCESS_BIT is set to 0 to
+       indicate failure
+
+IC_IVIL (0x19): 0x00000000 (W)
+bits [31:0] -> ADDR
+Notes: When written, if the data line in the given address exists then it gets invalidated and
+       IC_CTRL->SUCCESS_BIT is set to 1. If it does not exist IC_CTRL->SUCCESS_BIT is set to 0
+
+IC_RAM_ADDR (0x1a): 0x00007ff0 (RW)
+bits [(log2(CACHE_LINE_LENGTH_IN_BYTES) - 1):0] -> OFFSET
+bits [
+    (log2(CACHE_SIZE_IN_BYTES / CACHE_WAYS) - 1):
+    log2(CACHE_LINE_LENGTH_IN_BYTES)
+     ] -> INDEX
+bits [31:log2(CACHE_SIZE_IN_BYTES / CACHE_WAYS)] -> TAG
+bits [
+    log2(CACHE_SIZE_IN_BYTES / CACHE_WAYS) + (CACHE_WAYS - 1):
+    log2(CACHE_SIZE_IN_BYTES / CACHE_WAYS)
+     ] -> WAY
+Notes: If IC_CTRL->ADDR_DEBUG_TYPE == 0 then the "WAY" field is used, otherwise the "TAG" field is used
+
+IC_TAG (0x1b): 0x400efff1 (RW)
+bits [0:0] -> IS_VALID
+bits [1:1] -> IS_LOCKED
+bits [
+    (log2(CACHE_SIZE_IN_BYTES / CACHE_WAYS) - 1):
+    log2(CACHE_LINE_LENGTH_IN_BYTES)
+     ] -> INDEX
+bits [31:log2(CACHE_SIZE_IN_BYTES / CACHE_WAYS)] -> TAG
+
+IC_WP (0x1c): 0x00000002 (RW)
+
+IC_DATA (0x1d): 0xe6018f74 (RW)
+
+DC_IVDC (0x47): 0x00000000 (W)
+
+DC_CTRL (0x48): 0x0000008a (RW)
+
+DC_LDL (0x49): 0x00000000 (W)
+
+DC_IVDL (0x4a): 0x00000000 (W)
+
+DC_FLSH (0x4b): 0x00000000 (W)
+
+DC_FLDL (0x4c): 0x00000000 (W)
+
+DC_RAM_ADDR (0x58): 0x040004d0 (RW)
+
+DC_TAG (0x59): 0x3c5604d1 (RW)
+
+DC_WP (0x5a): 0x00000000 (RW)
+
+DC_DATA (0x5b):0x00000000 (RW)

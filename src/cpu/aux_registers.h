@@ -4,9 +4,11 @@
 #include <stdint.h>
 #include "registers.h"
 
-typedef uint32_t (*arc_aux_reg_read_t)(arc_aux_reg_map_t *reg_map, uint32_t reg_id);
+typedef struct arc_cpu_t;
 
-typedef void (*arc_aux_reg_write_t)(arc_aux_reg_map_t *reg_map, uint32_t reg_id, uint32_t reg_val);
+typedef uint32_t (*arc_aux_reg_read_t)(arc_cpu_t *cpu, arc_aux_reg_map_t *reg_map, uint32_t reg_id);
+
+typedef void (*arc_aux_reg_write_t)(arc_cpu_t *cpu, arc_aux_reg_map_t *reg_map, uint32_t reg_id, uint32_t reg_val);
 
 typedef struct {
     uint32_t val;
